@@ -4,4 +4,6 @@ export interface IDcAccordionProps {
   environmentMessage: string;
   hasTeamsContext: boolean;
   userDisplayName: string;
+  // allowZeroExpanded: boolean;
+  // allowMultipleExpanded: boolean;
 }

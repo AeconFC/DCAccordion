@@ -1,9 +1,9 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
-    "name": "dc-accordion-client-side-solution",
-    "id": "5310ef75-19c2-4d83-8003-70ac9366e072",
-    "version": "1.0.0.0",
+    "name": "Dynamic Content Accordion",
+    "id": "5310ef75-fcab-4d83-8003-70ac9366e072",
+    "version": "0.0.0.1",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
@@ -16,10 +16,10 @@
     },
     "metadata": {
       "shortDescription": {
-        "default": "dcAccordion description"
+        "default": "Dynamic Content Accordion"
       },
       "longDescription": {
-        "default": "dcAccordion description"
+        "default": "Dynamic Content Accordion"
       },
       "screenshotPaths": [],
       "videoUrl": "",
@@ -27,14 +27,14 @@
     },
     "features": [
       {
-        "title": "dc-accordion Feature",
-        "description": "The feature that activates elements of the dc-accordion solution.",
+        "title": "Dynamic Content Accordion Feature",
+        "description": "The feature that activates elements of the Dynamic Content Accordion solution.",
         "id": "b8dd171f-b02e-4eb7-a261-ebd2e0d0bf58",
         "version": "1.0.0.0"
       }
     ]
   },
   "paths": {
-    "zippedPackage": "solution/dc-accordion.sppkg"
+    "zippedPackage": "solution/dcaccordion.sppkg"
   }
 }
