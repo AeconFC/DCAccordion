@@ -3,6 +3,8 @@ import * as React from 'react';
 import { IDcAccordionProps } from './IDcAccordionProps';
 //import { escape } from '@microsoft/sp-lodash-subset';
 
+//require('../assets/css/custom.css');
+
 import {
   Accordion,
   AccordionItem,
@@ -16,7 +18,7 @@ const DcAccordion:React.FC<IDcAccordionProps> = (props) => {
   <>
   <Accordion allowZeroExpanded={true} allowMultipleExpanded={false}>
                   <AccordionItem>
-                    <AccordionItemHeading>
+                    <AccordionItemHeading  style={{backgroundColor: '#c8192e', border: 'solid 1px #f00', padding: '8px', color: '#fff',}}>
                       <AccordionItemButton title="test">
                         test title
                       </AccordionItemButton>
