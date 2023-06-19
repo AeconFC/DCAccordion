@@ -1,9 +1,10 @@
 import * as React from 'react';
-//import styles from './DcAccordion.module.scss';
 import { IDcAccordionProps } from './IDcAccordionProps';
-//import { escape } from '@microsoft/sp-lodash-subset';
-
-//require('../assets/css/custom.css');
+import {useState, useEffect} from 'react';
+import { Web } from "@pnp/sp/webs";
+import "@pnp/sp/webs";
+import "@pnp/sp/lists";
+import "@pnp/sp/items";
 
 import {
   Accordion,
@@ -13,21 +14,50 @@ import {
   AccordionItemPanel,
 } from "react-accessible-accordion";
 
+interface IAccordionContent {
+  Id: number;
+  Title: string;
+  Content: string;
+}
+
 const DcAccordion:React.FC<IDcAccordionProps> = (props) => {
+  const siteURL = "https://aecon1.sharepoint.com/sites/spdev";
+  const listname = "DCAccordionContent";
+
+  const [data, setData] = useState<IAccordionContent[]>([]);
+
+  const fetchData = async ():Promise<void> => {
+    if(siteURL && listname) {
+      const web = Web(siteURL);
+      const results: IAccordionContent[] = await web.lists.getByTitle(listname).items.select("Id","Title", "Content").filter("Status eq 'Active'").top(5000).orderBy("ID", true).get();
+      setData(results);
+    }
+  };
+
+  useEffect(() => {
+      fetchData()
+      .then()
+      .catch(console.error);
+  },[]);
+
   return(
   <>
   <Accordion allowZeroExpanded={true} allowMultipleExpanded={false}>
-                  <AccordionItem>
-                    <AccordionItemHeading  style={{backgroundColor: '#c8192e', border: 'solid 1px #f00', padding: '8px', color: '#fff',}}>
-                      <AccordionItemButton title="test">
-                        test title
-                      </AccordionItemButton>
-                    </AccordionItemHeading>
-                    <AccordionItemPanel>
-                      <p>test panel</p>
-                    </AccordionItemPanel>
-                  </AccordionItem>
-            </Accordion>
+    {data.map( item => (
+      <AccordionItem key={item.Id}>
+        <AccordionItemHeading  style={{backgroundColor: '#c8192e', border: 'solid 1px #f00', padding: '8px', color: '#fff',}}>
+          <AccordionItemButton title={item.Title}>{item.Title}</AccordionItemButton>
+        </AccordionItemHeading>
+        <AccordionItemPanel>
+        <p
+            dangerouslySetInnerHTML={{
+              __html: item.Content,
+            }}
+          />
+        </AccordionItemPanel>
+      </AccordionItem>
+    ))}                
+  </Accordion>
   </>
   );
 }
