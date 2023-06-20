@@ -10,6 +10,8 @@ declare interface IDcAccordionWebPartStrings {
   AppTeamsTabEnvironment: string;
   AppOfficeEnvironment: string;
   AppOutlookEnvironment: string;
+  SiteURLFieldLabel: string;
+  ListnameFieldLabel: string;
 }
 
 declare module 'DcAccordionWebPartStrings' {

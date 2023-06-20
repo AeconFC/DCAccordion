@@ -14,6 +14,8 @@ import { IDcAccordionProps } from './components/IDcAccordionProps';
 
 export interface IDcAccordionWebPartProps {
   description: string;
+  siteURL: string;
+  listname: string;
 }
 
 export default class DcAccordionWebPart extends BaseClientSideWebPart<IDcAccordionWebPartProps> {
@@ -29,7 +31,9 @@ export default class DcAccordionWebPart extends BaseClientSideWebPart<IDcAccordi
         isDarkTheme: this._isDarkTheme,
         environmentMessage: this._environmentMessage,
         hasTeamsContext: !!this.context.sdks.microsoftTeams,
-        userDisplayName: this.context.pageContext.user.displayName
+        userDisplayName: this.context.pageContext.user.displayName,
+        siteURL: this.properties.siteURL,
+        listname: this.properties.listname,
       }
     );
 
@@ -109,6 +113,12 @@ export default class DcAccordionWebPart extends BaseClientSideWebPart<IDcAccordi
               groupFields: [
                 PropertyPaneTextField('description', {
                   label: strings.DescriptionFieldLabel
+                }),
+                PropertyPaneTextField('siteURL', {
+                  label: strings.SiteURLFieldLabel
+                }),
+                PropertyPaneTextField('listname', {
+                  label: strings.ListnameFieldLabel
                 })
               ]
             }

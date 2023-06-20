@@ -21,15 +21,15 @@ interface IAccordionContent {
 }
 
 const DcAccordion:React.FC<IDcAccordionProps> = (props) => {
-  const siteURL = "https://aecon1.sharepoint.com/sites/spdev";
-  const listname = "DCAccordionContent";
+  // const siteURL = "https://aecon1.sharepoint.com/sites/spdev";
+  // const listname = "DCAccordionContent";
 
   const [data, setData] = useState<IAccordionContent[]>([]);
 
   const fetchData = async ():Promise<void> => {
-    if(siteURL && listname) {
-      const web = Web(siteURL);
-      const results: IAccordionContent[] = await web.lists.getByTitle(listname).items.select("Id","Title", "Content").filter("Status eq 'Active'").top(5000).orderBy("ID", true).get();
+    if(props.siteURL && props.listname) {
+      const web = Web(props.siteURL);
+      const results: IAccordionContent[] = await web.lists.getByTitle(props.listname).items.select("Id","Title", "Content").filter("Status eq 'Active'").top(5000).orderBy("ID", true).get();
       setData(results);
     }
   };
